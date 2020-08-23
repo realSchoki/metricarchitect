@@ -1,0 +1,23 @@
+@style("model/General.style")
+graphModel SensorModel {
+	package dev.schoki.metricarchitect.model.sensor
+	nsURI "http://cinco.scce.info/product/metricarchitect/model/sensor"
+	diagramExtension "sensor"
+	
+	@style(circle)
+	node Sensor {
+		incomingEdges (ContainedBy)
+		attr EString as name
+	}	
+	
+	@style(labeledCircle, "${label}")
+	node Attribute {
+		outgoingEdges (ContainedBy)
+		attr EString as label
+	}
+	
+	@style(simpleArrow)
+	edge ContainedBy { 
+	}
+}
+

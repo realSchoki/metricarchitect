@@ -1,0 +1,58 @@
+import "model/SensorModel.mgl" as SensorModel
+
+@style("model/General.style")
+@primeviewer
+graphModel FloorModel {
+	package dev.schoki.metricarchitect.model.floor
+	nsURI "http://cinco.scce.info/product/metricarchitect/model/floor"
+	diagramExtension "floor"
+	
+	attr EString as name
+	
+	@style(circle)
+	node Sensor {
+		@pvLabel (name)
+     	@pvFileExtension ("sensor")
+     	prime SensorModel::Sensor as sensor
+		outgoingEdges (Filter)
+		attr EString as name
+		attr EString as url
+	}	
+	
+	@style(circle)
+	node Function {
+		incomingEdges (Filter)
+		outgoingEdges (FunGra)
+		attr EString as function
+		attr EString as offset
+		@possibleValuesProvider("dev.schoki.metricarchitect.provider.ValueProvider")
+		attr EString as filter
+		attr EString as timespan
+		attr EString as timeresolution
+	}
+	
+	@style(circle)
+	node Graph {
+		incomingEdges (FunGra)
+		outgoingEdges (GraDash)
+		attr EInt as asd
+	}
+	
+	@style(circle)
+	node Dashboard {
+		incomingEdges (GraDash)
+	}
+	
+	@style(simpleArrow)
+	edge Filter {
+	}
+	
+	@style(simpleArrow)
+	edge FunGra {
+	}
+	
+	@style(simpleArrow)
+	edge GraDash {
+	}
+}
+

@@ -1,0 +1,21 @@
+import "model/FloorModel.mgl" as FloorModel
+
+@style("model/General.style")
+@primeviewer
+@generatable("dev.schoki.metricarchitect.codegen.ProjectGenerator","/src")
+graphModel ProjectModel {
+	package dev.schoki.metricarchitect.model.project
+	nsURI "http://cinco.scce.info/product/metricarchitect/model.project"
+	diagramExtension "project"
+	
+	attr EString as deploymentPrefix
+	
+	@style(circle)
+	node Floor {
+		@pvLabel (name)
+     	@pvFileExtension ("floor")
+     	prime FloorModel::FloorModel as floor
+	}
+	
+}
+
