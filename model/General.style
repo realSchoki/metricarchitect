@@ -4,6 +4,7 @@ appearance default {
 }
 
 nodeStyle labeledCircle (1){
+	appearanceProvider("dev.schoki.metricarchitect.provider.ImageProvider")
 	ellipse {
 		appearance default
 		size(40,40)

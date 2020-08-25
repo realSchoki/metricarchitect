@@ -17,7 +17,7 @@ public class ValueProvider extends CincoValuesProvider<Function, Attribute> {
 				.getSensor()
 				.getAttributePredecessors()
 				.stream()
-				.map( f -> f )).collect(Collectors.toMap(Functions.identity(), a -> a.toString()));
+				.map( f -> f )).collect(Collectors.toMap(Functions.identity(), a -> a.getLabel()));
 	}
 
 }

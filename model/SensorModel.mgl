@@ -11,6 +11,7 @@ graphModel SensorModel {
 	}	
 	
 	@style(labeledCircle, "${label}")
+	@icon("src/main/resources/icons/bolt-solid.png")
 	node Attribute {
 		outgoingEdges (ContainedBy)
 		attr EString as label

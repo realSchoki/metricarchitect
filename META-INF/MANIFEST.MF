@@ -11,12 +11,7 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,de.jabc.cin
  esources,org.eclipse.emf.transaction,de.jabc.cinco.meta.libraries,org
  .eclipse.xtend.typesystem.emf,org.eclipse.emf.ecore.xmi,de.jabc.cinco
  .meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator.ru
- ntime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.
- plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,
- de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin
- .generator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jab
- c.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.gener
- ator.runtime,de.jabc.cinco.meta.plugin.generator.runtime
+ ntime
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -50,7 +45,7 @@ Export-Package: dev.schoki.metricarchitect.codegen,dev.schoki.metricar
  metricarchitect.model.sensor.sensormodel.views,dev.schoki.metricarchi
  tect.model.sensor.sensormodel.views.impl,dev.schoki.metricarchitect.m
  odel.sensor.sensormodel.views.util,dev.schoki.metricarchitect.perspec
- tive
+ tive,dev.schoki.metricarchitect.provider
 Bundle-Name: %pluginName
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
