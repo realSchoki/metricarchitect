@@ -4,7 +4,7 @@ appearance default {
 }
 
 nodeStyle labeledCircle (1){
-	appearanceProvider("dev.schoki.metricarchitect.provider.ImageProvider")
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageProvider")
 	ellipse {
 		appearance default
 		size(40,40)
@@ -32,3 +32,39 @@ edgeStyle simpleArrow {
 	}
 }
 
+nodeStyle attribute (1) {
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40 , 60 )
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/file-export-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle sensor (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/list-alt-regular.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}

@@ -5,7 +5,7 @@ import "model/FloorModel.mgl" as FloorModel
 @generatable("dev.schoki.metricarchitect.codegen.ProjectGenerator","/src")
 graphModel ProjectModel {
 	package dev.schoki.metricarchitect.model.project
-	nsURI "http://cinco.scce.info/product/metricarchitect/model.project"
+	nsURI "http://cinco.scce.info/product/metricarchitect/model/project"
 	diagramExtension "project"
 	
 	attr EString as deploymentPrefix
@@ -16,6 +16,4 @@ graphModel ProjectModel {
      	@pvFileExtension ("floor")
      	prime FloorModel::FloorModel as floor
 	}
-	
 }
-

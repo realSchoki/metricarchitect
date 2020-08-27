@@ -4,14 +4,14 @@ graphModel SensorModel {
 	nsURI "http://cinco.scce.info/product/metricarchitect/model/sensor"
 	diagramExtension "sensor"
 	
-	@style(circle)
+	@style(sensor, "${name}")
 	node Sensor {
 		incomingEdges (ContainedBy)
 		attr EString as name
 	}	
 	
-	@style(labeledCircle, "${label}")
-	@icon("src/main/resources/icons/bolt-solid.png")
+	@style(attribute, "${label}")
+	//@icon("src/main/resources/icons/bolt-solid.png")
 	node Attribute {
 		outgoingEdges (ContainedBy)
 		attr EString as label
