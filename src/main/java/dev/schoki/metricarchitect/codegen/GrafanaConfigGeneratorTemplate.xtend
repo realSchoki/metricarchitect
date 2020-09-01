@@ -1,7 +1,7 @@
 package dev.schoki.metricarchitect.codegen
 
 import java.util.List
-import dev.schoki.metricarchitect.model.floor.floormodel.Graph
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.Graph
 
 class GrafanaConfigGeneratorTemplate {
 	def static String generate() {

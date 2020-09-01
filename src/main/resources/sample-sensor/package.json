@@ -1,0 +1,23 @@
+{
+  "name": "metricarchitect-sample-sensor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simplydennis/metricarchitect-sample-sensor.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/simplydennis/metricarchitect-sample-sensor/issues"
+  },
+  "homepage": "https://github.com/simplydennis/metricarchitect-sample-sensor#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "prom-client": "^12.0.0"
+  }
+}

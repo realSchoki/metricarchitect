@@ -1,5 +1,6 @@
 cincoProduct MetricArchitectTool {
 	mgl "model/SensorModel.mgl"
 	mgl "model/FloorModel.mgl"
+	mgl "model/GrafanaModel.mgl"
 	mgl "model/ProjectModel.mgl"
 }		

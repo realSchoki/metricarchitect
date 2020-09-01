@@ -1,0 +1,39 @@
+import "model/FloorModel.mgl" as FloorModel
+
+@style("model/General.style")
+@primeviewer
+graphModel GrafanaModel {
+	package dev.schoki.metricarchitect.model.grafana
+	nsURI "http://cinco.scce.info/product/metricarchitect/model/grafana"
+	diagramExtension "grafana"
+	
+	attr EString as name
+	
+	@style(graph, "${label}")
+	node Graph {
+		@pvLabel (name)
+     	@pvFileExtension ("floor")
+     	prime FloorModel::Function as function
+		outgoingEdges (GraphPanel)
+	}
+	
+	@style(panel, "${label}")
+	node Panel {
+		incomingEdges (GraphPanel)
+		outgoingEdges (PanelDashboard)
+	}
+	
+	@style(dashboard, "${label}")
+	node Dashboard {
+		incomingEdges (PanelDashboard)
+	}
+	
+	@style(simpleArrow)
+	edge GraphPanel {
+	}
+	
+	@style(simpleArrow)
+	edge PanelDashboard {
+	}
+}
+

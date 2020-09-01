@@ -9,7 +9,7 @@ graphModel FloorModel {
 	
 	attr EString as name
 	
-	@style(circle)
+	@style(sensor, "${label}")
 	node Sensor {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
@@ -19,40 +19,20 @@ graphModel FloorModel {
 		attr EString as url
 	}	
 	
-	@style(circle)
+	@style(function, "${label}")
 	node Function {
 		incomingEdges (Filter)
-		outgoingEdges (FunGra)
 		attr EString as function
 		attr EString as offset
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.ValueProvider")
 		attr EString as filter
 		attr EString as timespan
 		attr EString as timeresolution
-	}
-	
-	@style(circle)
-	node Graph {
-		incomingEdges (FunGra)
-		outgoingEdges (GraDash)
-		attr EInt as asd
-	}
-	
-	@style(circle)
-	node Dashboard {
-		incomingEdges (GraDash)
+		attr EString as name := "Description..."
 	}
 	
 	@style(simpleArrow)
 	edge Filter {
-	}
-	
-	@style(simpleArrow)
-	edge FunGra {
-	}
-	
-	@style(simpleArrow)
-	edge GraDash {
 	}
 }
 

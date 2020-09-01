@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import dev.schoki.metricarchitect.model.floor.floormodel.Function;
-import dev.schoki.metricarchitect.model.floor.floormodel.Graph;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.Graph;
 
 public class Utils {
 	public static void writeFile(File f, CharSequence code) {
@@ -35,7 +35,7 @@ public class Utils {
 	}
 	
 	public static String graphToString(Graph g) {
-		Function f = g.getFunctionPredecessors().get(0);
+		Function f = g.getFunction();
 		String jobs = String.join("|",   f.getSensorPredecessors().stream().map(s -> s.getName()).collect(Collectors.toList()));
 		String expr = String.format("%s{job=~\\\"%s\\\"}", f.getFilter(), jobs, f.getTimespan(), f.getTimeresolution());
 		if(f.getTimespan() != null && !f.getTimespan().isEmpty()) {

@@ -68,3 +68,79 @@ nodeStyle sensor (1) {
 		}
 	}
 }
+
+nodeStyle graph (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/chart-line-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle panel (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/chalkboard-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle dashboard (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/list-alt-regular.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle function (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		appearance {
+			transparency 1
+		} 
+		size ( 40, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/calculator-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}

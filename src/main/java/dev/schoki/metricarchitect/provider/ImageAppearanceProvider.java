@@ -1,29 +1,21 @@
 package dev.schoki.metricarchitect.provider;
 
 import de.jabc.cinco.meta.core.ge.style.generator.runtime.appearance.StyleAppearanceProvider;
-import de.jabc.cinco.meta.core.utils.CincoUtil;
-import de.jabc.cinco.meta.core.utils.MGLUtil;
 import dev.schoki.metricarchitect.model.floor.floormodel.Sensor;
-import mgl.ModelElement;
-import mgl.Node;
 import style.Appearance;
-import style.NodeStyle;
-import style.impl.AppearanceImpl;
+import style.StyleFactory;
 
 public class ImageAppearanceProvider implements StyleAppearanceProvider<Sensor> {
 
 	@Override
-	public Appearance getAppearance(Sensor arg0, String arg1) {
-		Appearance a = new App();
-		
-		NodeStyle style = CincoUtil.getStyleForNode((Node) arg0, CincoUtil.getStyles(MGLUtil.getGraphModel((ModelElement) arg0 )));
-		style.
-		Appearance app = new SensorAppearance();
-		return null;
-		
-	}
-
-	private class App extends AppearanceImpl {
-		
+	public Appearance getAppearance(Sensor sensor, String element) {
+		// element can be ignored here, as there are no named inner elements in the simpleArrow style
+		System.out.println(element);
+		Appearance appearance = StyleFactory.eINSTANCE.createAppearance();
+		style.Color col = StyleFactory.eINSTANCE.createColor();
+		col.setR(255);
+		appearance.setLineWidth(2);
+		appearance.setBackground(col);
+		return appearance;
 	}
 }

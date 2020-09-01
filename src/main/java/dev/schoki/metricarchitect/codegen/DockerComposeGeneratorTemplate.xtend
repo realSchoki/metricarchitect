@@ -29,7 +29,7 @@ class DockerComposeGeneratorTemplate {
 		    sensor:
 		      ports:
 		        - "127.0.0.1:3001:3001"
-		      image: "diidee/metricarchitect-sample-sensor"
+		      build: ./sensor-model/
 		    «ENDIF»
 		volumes:
 		  data-prometheus:

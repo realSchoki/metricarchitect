@@ -1,8 +1,8 @@
-import "model/FloorModel.mgl" as FloorModel
+import "model/GrafanaModel.mgl" as GrafanaModel
 
 @style("model/General.style")
 @primeviewer
-@generatable("dev.schoki.metricarchitect.codegen.ProjectGenerator","/src")
+@generatable("dev.schoki.metricarchitect.codegen.ProjectGenerator","/src-gen/")
 graphModel ProjectModel {
 	package dev.schoki.metricarchitect.model.project
 	nsURI "http://cinco.scce.info/product/metricarchitect/model/project"
@@ -11,9 +11,9 @@ graphModel ProjectModel {
 	attr EString as deploymentPrefix
 	
 	@style(circle)
-	node Floor {
+	node GrafanaModel {
 		@pvLabel (name)
-     	@pvFileExtension ("floor")
-     	prime FloorModel::FloorModel as floor
+     	@pvFileExtension ("grafana")
+     	prime GrafanaModel::GrafanaModel as grafanaModels
 	}
 }

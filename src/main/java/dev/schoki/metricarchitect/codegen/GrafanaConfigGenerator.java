@@ -2,12 +2,13 @@ package dev.schoki.metricarchitect.codegen;
 
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import dev.schoki.metricarchitect.codegen.GrafanaConfigGeneratorTemplate;
-import dev.schoki.metricarchitect.model.floor.floormodel.Dashboard;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard;
 
 public class GrafanaConfigGenerator{
 		public void generate(List<Dashboard> dashboards, IPath targetDir, IProgressMonitor monitor){
@@ -24,7 +25,8 @@ public class GrafanaConfigGenerator{
 				String name = Utils.randomString(10);
 				File graph = targetDir.append("/dashboards/").append(name + ".json").toFile();
 				
-				Utils.writeFile(graph, GrafanaConfigGeneratorTemplate.getGraph(d.getGraphPredecessors(), name));
+				Utils.writeFile(graph, GrafanaConfigGeneratorTemplate.getGraph(d.getPanelPredecessors().stream()
+						.flatMap( p -> p.getGraphPredecessors().stream()).collect(Collectors.toList()), name));
 			});
 		}
 

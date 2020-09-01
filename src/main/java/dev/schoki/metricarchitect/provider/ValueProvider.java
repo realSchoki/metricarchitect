@@ -9,15 +9,16 @@ import de.jabc.cinco.meta.runtime.provider.CincoValuesProvider;
 import dev.schoki.metricarchitect.model.floor.floormodel.Function;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Attribute;
 
-public class ValueProvider extends CincoValuesProvider<Function, Attribute> {
+public class ValueProvider extends CincoValuesProvider<Function, String> {
 
 	@Override
-	public Map<Attribute, String> getPossibleValues(Function arg0) {
+	public Map<String, String> getPossibleValues(Function arg0) {
 		return arg0.getIncoming().stream().flatMap( edge -> edge.getSourceElement()
-				.getSensor()
-				.getAttributePredecessors()
-				.stream()
-				.map( f -> f )).collect(Collectors.toMap(Functions.identity(), a -> a.getLabel()));
+					.getSensor()
+					.getAttributePredecessors()
+					.stream()
+					.map(Attribute::getLabel))
+				.distinct()
+				.collect(Collectors.toMap(Functions.identity(), Functions.identity()));
 	}
-
 }
