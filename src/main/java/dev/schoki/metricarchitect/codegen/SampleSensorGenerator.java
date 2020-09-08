@@ -1,66 +1,33 @@
 package dev.schoki.metricarchitect.codegen;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.apache.commons.io.IOUtils;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.osgi.framework.Bundle;
-import com.google.common.base.Charsets;
-
-import de.jabc.cinco.meta.core.utils.CincoUtil;
+import org.eclipse.core.runtime.Path;
 
 public class SampleSensorGenerator {
-	private static Stream<Path> c;
+	//private static Stream<Path> c;
 
 	public static void generate(IPath targetDir, IProgressMonitor monitor) throws IOException, URISyntaxException {
-		// String code = DockerComposeGeneratorTemplate.generate(generateStubSensor);
 		IPath dir = targetDir.append("/sample-sensor/");
 		dir.toFile().mkdir();
 		
-        Bundle bundle = Platform.getBundle("dev.schoki.metricarchitect");
-        
-        URL fileURL = bundle.getEntry("./");
-        
-        c = Files.list(Paths.get(fileURL.getPath()));
+		org.osgi.framework.Bundle b = org.eclipse.core.runtime.Platform.getBundle("dev.schoki.metricarchitect");
+		java.net.URL url =  org.eclipse.core.runtime.FileLocator.find(b, new org.eclipse.core.runtime.Path("src/main/resources/sample-sensor"), null);
+		Path path = new Path(org.eclipse.core.runtime.FileLocator.toFileURL(url).getPath());
 		
-		c.forEach( p -> System.out.println(p.toString()));
-		Files.list(Paths.get("src/main/resources/sample-sensor")).forEach( p -> {
-			//Path copied = dir.append("package.json").toFile().toPath();
-			//Path originalPath = Paths.get("src/main/resources/package.json");
-			System.out.println(p.toString());
+		Files.list(path.toFile().toPath()).forEach( x -> {
+			//java.net.URL u =  org.eclipse.core.runtime.FileLocator.find(b, new org.eclipse.core.runtime.Path(x.toFile().getPath()), null);
 			try {
-				Files.copy(p, dir.append((IPath) p.getFileName()).toFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
+				//p = new Path(org.eclipse.core.runtime.FileLocator.toFileURL(u).getPath());
+				Files.copy(x, dir.append(x.toFile().getName()).toFile().toPath(), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
 	}
-	
-	  private static File[] getResourceFolderFiles (String folder) {
-		    ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		    URL url = loader.getResource(folder);
-		    String path = url.getPath();
-		    return new File(path).listFiles();
-		  }
 }

@@ -5,16 +5,62 @@ graphModel SensorModel {
 	diagramExtension "sensor"
 	
 	@style(sensor, "${name}")
+	@palette("Sensors")
 	node Sensor {
 		incomingEdges (ContainedBy)
-		attr EString as name
+		attr EString as name := ""
+		@possibleValuesProvider("dev.schoki.metricarchitect.provider.SensorIconValueProvider")
+		attr EString as icon
 	}	
 	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/bolt-solid.16.png")
+	node Bolt extends Sensor {
+	}
+	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/broadcast-tower-solid.16.png")
+	node Broadcast extends Sensor {
+	}
+	 
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/fan-solid.16.png")
+	node Fan extends Sensor {
+	}
+	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/faucet-solid.16.png")
+	node Faucet extends Sensor {
+	}
+	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/lightbulb-solid.16.png")
+	node Light extends Sensor {
+	}
+	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/plug-solid.16.png")
+	node Plug extends Sensor {
+	}
+	
+	@style(sensor, "${name}")
+	@palette("Sensors")
+	@icon("src/main/resources/icons/wind-solid.16.png")
+	node Wind extends Sensor {
+	}
+
+	
 	@style(attribute, "${label}")
-	//@icon("src/main/resources/icons/bolt-solid.png")
+	@icon("src/main/resources/icons/file-export-solid.16.png")
 	node Attribute {
 		outgoingEdges (ContainedBy)
-		attr EString as label
+		attr EString as label := ""
 	}
 	
 	@style(simpleArrow)

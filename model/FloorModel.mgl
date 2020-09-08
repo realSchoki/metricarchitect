@@ -9,7 +9,7 @@ graphModel FloorModel {
 	
 	attr EString as name
 	
-	@style(sensor, "${label}")
+	@style(sensorfloor, "${label}")
 	node Sensor {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
@@ -33,6 +33,12 @@ graphModel FloorModel {
 	
 	@style(simpleArrow)
 	edge Filter {
+	}
+	
+	@style(floorImage)
+	container FloorImage {
+		containableElements ( Function , Sensor )
+		attr EString as image
 	}
 }
 

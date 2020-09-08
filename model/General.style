@@ -4,7 +4,6 @@ appearance default {
 }
 
 nodeStyle labeledCircle (1){
-	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageProvider")
 	ellipse {
 		appearance default
 		size(40,40)
@@ -51,16 +50,35 @@ nodeStyle attribute (1) {
 }
 
 nodeStyle sensor (1) {
-	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	appearanceProvider("dev.schoki.metricarchitect.provider.SensorImageAppearanceProvider")
 	rectangle {
-		appearance {
+		appearance { 
 			transparency 1
 		} 
 		size ( 40, 60)
-		image { 
+		image {
 			position ( CENTER , TOP ) 
 			size ( fix 40, fix 40 ) 
-			path ( "src/main/resources/icons/list-alt-regular.png" )
+			path ( "src/main/resources/icons/bolt-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle  sensorfloor {
+	appearanceProvider("dev.schoki.metricarchitect.provider.FloorImageAppearanceProvider")
+	rectangle {
+		appearance { 
+			transparency 1
+		} 
+		size ( 40, 60)
+		image {
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/bolt-solid.png" )
 		}
 		text {
 			position ( CENTER , BOTTOM )
@@ -142,5 +160,44 @@ nodeStyle function (1) {
 			position ( CENTER , BOTTOM )
 			value "%s" 
 		}
+	}
+}
+
+nodeStyle dummy {
+	rectangle {
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/bolt-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/broadcast-tower-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/fan-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/faucet-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/lightbulb-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/plug-solid.png")
+		}
+		image {
+			size ( 0, 0 )
+			path ("src/main/resources/icons/wind-solid.png")
+		}
+	}
+}
+
+nodeStyle floorImage {
+	appearanceProvider ( "dev.schoki.metricarchitect.provider.FloorBackgroundImageAppearanceProvider" )
+	rectangle { 
 	}
 }

@@ -13,6 +13,7 @@ import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard;
 public class GrafanaConfigGenerator{
 		public void generate(List<Dashboard> dashboards, IPath targetDir, IProgressMonitor monitor){
 
+			
 			File datasource = targetDir.append("grafana_prometheus_connection.yml").toFile();
 			Utils.writeFile(datasource, GrafanaConfigGeneratorTemplate.getDatasource());
 
