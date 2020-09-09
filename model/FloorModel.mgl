@@ -9,7 +9,7 @@ graphModel FloorModel {
 	
 	attr EString as name
 	
-	@style(sensorfloor, "${label}")
+	@style(sensorInFloorModel, "${name}")
 	node Sensor {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")

@@ -25,17 +25,17 @@ class DockerComposeGeneratorTemplate {
 		      - ./prometheus.yml:/etc/prometheus/prometheus.yml
 		      - data-prometheus:/prometheus
 		    image: "prom/prometheus"
-		    «IF generateSampleSensors»
-		    sensor:
-		      ports:
-		        - "127.0.0.1:3001:3001"
-		      build: ./sensor-model/
-		    «ENDIF»
+		  «IF generateSampleSensors»
+		  sensor:
+		    ports:
+		    - "127.0.0.1:3001:3001"
+		    build: ./sensor-model/
+		  «ENDIF»
 		volumes:
 		  data-prometheus:
 		    driver: local
 		  data-grafana:
-		    driver: local	    
+		    driver: local
 		'''
 		return template;
 	}

@@ -68,7 +68,7 @@ nodeStyle sensor (1) {
 	}
 }
 
-nodeStyle  sensorfloor {
+nodeStyle  sensorInFloorModel (1) {
 	appearanceProvider("dev.schoki.metricarchitect.provider.FloorImageAppearanceProvider")
 	rectangle {
 		appearance { 
@@ -198,6 +198,11 @@ nodeStyle dummy {
 
 nodeStyle floorImage {
 	appearanceProvider ( "dev.schoki.metricarchitect.provider.FloorBackgroundImageAppearanceProvider" )
-	rectangle { 
+	rectangle {
+		size (100, 100)
+		image {
+			size ( 100, 100 )
+			path ("src/main/resources/icons/bolt-solid.png")
+		}
 	}
 }
