@@ -7,17 +7,18 @@ import dev.schoki.metricarchitect.model.sensor.sensormodel.Fan;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Faucet;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Light;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Plug;
-import dev.schoki.metricarchitect.model.sensor.sensormodel.Sensor;
+import dev.schoki.metricarchitect.model.sensor.sensormodel.SensorDevice;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Wind;
 import dev.schoki.metricarchitect.provider.SensorIconValueProvider.Icon;
 import style.Appearance;
 import style.StyleFactory;
 
-public class SensorImageAppearanceProvider implements StyleAppearanceProvider<Sensor> {
+public class SensorImageAppearanceProvider implements StyleAppearanceProvider<SensorDevice> {
 
 	@Override
-	public Appearance getAppearance(Sensor sensor, String element) {
+	public Appearance getAppearance(SensorDevice sensor, String element) {
 		Appearance appearance = StyleFactory.eINSTANCE.createAppearance();
+		appearance.setLineWidth(2);
 		
 		if (sensor instanceof Plug) {
 			appearance.setImagePath(Icon.Plug.path);

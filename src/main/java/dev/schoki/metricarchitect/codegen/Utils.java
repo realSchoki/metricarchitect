@@ -4,11 +4,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import dev.schoki.metricarchitect.model.floor.floormodel.Function;
-import dev.schoki.metricarchitect.model.grafana.grafanamodel.Graph;
+import org.eclipse.emf.common.util.EList;
+
+import dev.schoki.metricarchitect.model.floor.floormodel.SensorDeviceInstance;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryPanel;
 
 public class Utils {
 	public static void writeFile(File f, CharSequence code) {
@@ -34,23 +40,32 @@ public class Utils {
 	    return generatedString;
 	}
 	
-	public static String graphToString(Graph g) {
-		Function f = g.getFunction();
-		String jobs = String.join("|",   f.getSensorPredecessors().stream().map(s -> s.getName()).collect(Collectors.toList()));
-		String expr = String.format("%s{job=~\\\"%s\\\"}", f.getFilter(), jobs, f.getTimespan(), f.getTimeresolution());
-		if(f.getTimespan() != null && !f.getTimespan().isEmpty()) {
-			if(f.getTimeresolution() != null && !f.getTimeresolution().isEmpty()) {
-				expr = String.format("%s[%s:%s]", expr, f.getTimespan(), f.getTimeresolution());
+	public static String graphToString(GraphQueryPanel g) {
+		EList<SensorDeviceInstance> f = g.getSourceElement().getDeviceGroup().getSensorDeviceInstancePredecessors();
+		String jobs = String.join("|",   f.stream().map(s -> s.getName()).collect(Collectors.toList()));
+		String expr = String.format("%s{job=~\\\"%s\\\"}", g.getFilter(), jobs, g.getTimespan(), g.getTimeresolution());
+		if(g.getTimespan() != null && !g.getTimespan().isEmpty()) {
+			if(g.getTimeresolution() != null && !g.getTimeresolution().isEmpty()) {
+				expr = String.format("%s[%s:%s]", expr, g.getTimespan(), g.getTimeresolution());
 			} else {
-				expr = String.format("%s[%s]", expr, f.getTimespan());
+				expr = String.format("%s[%s]", expr, g.getTimespan());
 			}
 		}
-		if(f.getOffset() != null && !f.getOffset().isEmpty()) {
-			expr = String.format("%s offset %s", expr, f.getOffset());
+		if(g.getOffset() != null && !g.getOffset().isEmpty()) {
+			expr = String.format("%s offset %s", expr, g.getOffset());
 		}
-		if(f.getFunction() != null && !f.getFunction().isEmpty()) {
-			expr = String.format("%s(%s)", f.getFunction(), expr);
+		if(g.getFunction() != null && !g.getFunction().isEmpty()) {
+			expr = String.format("%s(%s)", g.getFunction(), expr);
 		}
-		return "";
+		return expr;
+	}
+	
+
+	
+	public static <T> Predicate<T> distinctByKey(
+	    Function<? super T, ?> keyExtractor) {
+	  
+	    Map<Object, Boolean> seen = new ConcurrentHashMap<>(); 
+	    return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null; 
 	}
 }

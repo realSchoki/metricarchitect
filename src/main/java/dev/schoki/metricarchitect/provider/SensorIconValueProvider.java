@@ -12,11 +12,10 @@ import dev.schoki.metricarchitect.model.sensor.sensormodel.Fan;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Faucet;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Light;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Plug;
-import dev.schoki.metricarchitect.model.sensor.sensormodel.Sensor;
+import dev.schoki.metricarchitect.model.sensor.sensormodel.SensorDevice;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Wind;
-import dev.schoki.metricarchitect.provider.SensorIconValueProvider.Icon;
 
-public class SensorIconValueProvider extends CincoValuesProvider<Sensor, String> {
+public class SensorIconValueProvider extends CincoValuesProvider<SensorDevice, String> {
 	
 	public static enum Icon {
 		Bolt("src/main/resources/icons/bolt-solid.png"),
@@ -45,7 +44,7 @@ public class SensorIconValueProvider extends CincoValuesProvider<Sensor, String>
 	}
 
 	@Override
-	public Map<String, String> getPossibleValues(Sensor sensor) {
+	public Map<String, String> getPossibleValues(SensorDevice sensor) {
 		
 		if (sensor instanceof Plug) {
 			return Arrays.asList(Icon.Plug).stream().collect(Collectors.toMap(Icon::getPath, Icon::name));

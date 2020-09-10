@@ -1,11 +1,14 @@
 package dev.schoki.metricarchitect.codegen
 
-import java.util.List
-import dev.schoki.metricarchitect.model.grafana.grafanamodel.Graph
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.Panel
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryPanel
+import org.eclipse.emf.common.util.EList
 
 class GrafanaConfigGeneratorTemplate {
+	static var i = 0;
+	
 	def static String generate() {
-
 	}
 	
 	def static String getDatasource() {
@@ -98,8 +101,8 @@ class GrafanaConfigGeneratorTemplate {
 		return template
 	}
 	
-	def static String getGraph(List<Graph> graph, String name) {
-		
+	def static String getGraph(Dashboard d, String uid) {
+		i = 0
 		var template = '''
 		{
 		    "annotations": {
@@ -120,8 +123,8 @@ class GrafanaConfigGeneratorTemplate {
 		    "graphTooltip": 0,
 		    "links": [],
 		    "panels": [
-		    «FOR g : graph»
-		    	«getPanel(6,6,0,0,Utils.graphToString(g),"Test")»
+		    «FOR panel : d.panelPredecessors SEPARATOR ','» 
+		    	«getPanel(6,6, (i%2)*6,(i/2)*6, panel)»
 		    «ENDFOR»
 		    ],
 		    "schemaVersion": 26,
@@ -136,8 +139,8 @@ class GrafanaConfigGeneratorTemplate {
 		    },
 		    "timepicker": {},
 		    "timezone": "",
-		    "title": "Sample A",
-		    "uid": "«name»",
+		    "title": "«d.name»",
+		    "uid": "«uid»",
 		    "version": 2
 		  }
 		  '''
@@ -145,7 +148,8 @@ class GrafanaConfigGeneratorTemplate {
 		  return template
 	}
 	
-	def static String getPanel(int h, int w, int x, int y, String expr, String titel){
+	def static String getPanel(int h, int w, int x, int y, Panel p){
+		i = i + 1
 		return '''
 				      {
 				        "aliasColors": {},
@@ -168,7 +172,7 @@ class GrafanaConfigGeneratorTemplate {
 				          "y": «y»
 				        },
 				        "hiddenSeries": false,
-				        "id": 2,
+				        "id": «i»,
 				        "legend": {
 				          "avg": false,
 				          "current": false,
@@ -191,18 +195,13 @@ class GrafanaConfigGeneratorTemplate {
 				        "stack": false,
 				        "steppedLine": false,
 				        "targets": [
-				          {
-				            "expr": "«expr»",
-				            "interval": "",
-				            "legendFormat": "",
-				            "refId": "A"
-				          }
+				        «getTargets(p.incomingGraphQueryPanels)»
 				        ],
 				        "thresholds": [],
 				        "timeFrom": null,
 				        "timeRegions": [],
 				        "timeShift": null,
-				        "title": "«titel»",
+				        "title": "«p.name»",
 				        "tooltip": {
 				          "shared": true,
 				          "sort": 0,
@@ -238,7 +237,25 @@ class GrafanaConfigGeneratorTemplate {
 				          "align": false,
 				          "alignLevel": null
 				        }
-				      },
+				      }
 		'''
+	}
+	
+	def static getTargets(EList<GraphQueryPanel> gqp) {
+		var x = 0;
+		var char c = 'A'
+		var res = ""
+		for (graph : gqp) {
+			res +='''
+            {
+              "expr": "«Utils.graphToString(graph)»",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "«((c as int) + x) as char»" 
+            }«IF graph != gqp.last»,«ENDIF»
+			'''
+			x += 1
+		}
+		return res 
 	}
 }

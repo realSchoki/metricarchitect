@@ -13,7 +13,7 @@ class DockerComposeGeneratorTemplate {
 		      - data-grafana:/var/lib/grafana
 		      - ./grafana_prometheus_connection.yml:/etc/grafana/provisioning/datasources/grafana_prometheus_connection.yml
 		      - ./dashboards_config.yml:/etc/grafana/provisioning/dashboards/dashboards_config.yml
-		      - ./dashboards:/var/lib/grafana/dashboards
+		      - ./dashboards:/var/lib/grafana/dashboards/general
 		    links:
 		    - prometheus
 		    #command: --config /tmp/grafana.yml
@@ -29,7 +29,7 @@ class DockerComposeGeneratorTemplate {
 		  sensor:
 		    ports:
 		    - "127.0.0.1:3001:3001"
-		    build: ./sensor-model/
+		    build: ./sample-sensor/
 		  «ENDIF»
 		volumes:
 		  data-prometheus:

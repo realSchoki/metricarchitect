@@ -9,27 +9,36 @@ graphModel GrafanaModel {
 	
 	attr EString as name
 	
-	@style(graph, "${label}")
-	node Graph {
+	@style(graphQuery, "${name}")
+	node GraphQuery {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
-     	prime FloorModel::Function as function
-		outgoingEdges (GraphPanel)
+     	prime FloorModel::DeviceGroup as deviceGroup
+		outgoingEdges (GraphQueryPanel)
+		attr EString as name := ""
 	}
 	
-	@style(panel, "${label}")
+	@style(panel, "${name}")
 	node Panel {
-		incomingEdges (GraphPanel)
+		incomingEdges (GraphQueryPanel)
 		outgoingEdges (PanelDashboard)
+		attr EString as name := ""
 	}
 	
-	@style(dashboard, "${label}")
+	@style(dashboard, "${name}")
 	node Dashboard {
 		incomingEdges (PanelDashboard)
+		attr EString as name := ""
 	}
 	
 	@style(simpleArrow)
-	edge GraphPanel {
+	edge GraphQueryPanel {
+		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FilterValueProvider")
+		attr EString as filter
+		attr EString as function
+		attr EString as offset
+		attr EString as timespan
+		attr EString as timeresolution
 	}
 	
 	@style(simpleArrow)

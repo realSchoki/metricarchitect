@@ -31,14 +31,11 @@ edgeStyle simpleArrow {
 	}
 }
 
-nodeStyle attribute (1) {
+nodeStyle sensorMetric (1) {
 	rectangle {
-		appearance {
-			transparency 1
-		} 
-		size ( 40 , 60 )
+		size ( 50 , 100 )
 		image { 
-			position ( CENTER , TOP ) 
+			position ( CENTER 2, TOP 2) 
 			size ( fix 40, fix 40 ) 
 			path ( "src/main/resources/icons/file-export-solid.png" )
 		}
@@ -49,15 +46,12 @@ nodeStyle attribute (1) {
 	}
 }
 
-nodeStyle sensor (1) {
+nodeStyle sensorDevice (1) {
 	appearanceProvider("dev.schoki.metricarchitect.provider.SensorImageAppearanceProvider")
 	rectangle {
-		appearance { 
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 70, 70)
 		image {
-			position ( CENTER , TOP ) 
+			position ( CENTER, TOP 5) 
 			size ( fix 40, fix 40 ) 
 			path ( "src/main/resources/icons/bolt-solid.png" )
 		}
@@ -71,12 +65,9 @@ nodeStyle sensor (1) {
 nodeStyle  sensorInFloorModel (1) {
 	appearanceProvider("dev.schoki.metricarchitect.provider.FloorImageAppearanceProvider")
 	rectangle {
-		appearance { 
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 70, 70)
 		image {
-			position ( CENTER , TOP ) 
+			position ( CENTER 2 , TOP 2) 
 			size ( fix 40, fix 40 ) 
 			path ( "src/main/resources/icons/bolt-solid.png" )
 		}
@@ -87,8 +78,8 @@ nodeStyle  sensorInFloorModel (1) {
 	}
 }
 
-nodeStyle graph (1) {
-	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+nodeStyle graphQuery (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryAppearanceProvider")
 	rectangle {
 		appearance {
 			transparency 1
@@ -144,8 +135,8 @@ nodeStyle dashboard (1) {
 	}
 }
 
-nodeStyle function (1) {
-	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+nodeStyle deviceGroup (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupAppearanceProvider")
 	rectangle {
 		appearance {
 			transparency 1

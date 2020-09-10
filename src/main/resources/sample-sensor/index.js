@@ -14,11 +14,19 @@ const checkoutsTotal = new Prometheus.Counter({
 
 const offsetx = Math.random() * 100000;
 const offsety = Math.random() * 10;
+const temperaturex = Math.random() * 100000;
+const temperaturey = Math.random() * 10;
+const trafficx = Math.random() * 100000;
+const trafficy = Math.random() * 10;
 const amp = Math.random() * 100;
-const gauge = new Prometheus.Gauge({ name: 'sample_metric', help: 'metric_help' });
+const powerconsumption = new Prometheus.Gauge({ name: 'powerconsumption', help: 'metric_help' });
+const temperature = new Prometheus.Gauge({ name: 'temperature', help: 'metric_help' });
+const traffic = new Prometheus.Gauge({ name: 'traffic', help: 'metric_help' });
 
 app.get('/metrics', (req, res) => {
-    gauge.set(offsety + amp * Math.sin((Date.now() + offsetx) / 100000));
+    powerconsumption.set(offsety + amp * Math.sin((Date.now() + offsetx) / 100000));
+    temperature.set(temperaturey + amp * Math.sin((Date.now() + temperaturex) / 100000));
+    traffic.set(trafficy + amp * Math.sin((Date.now() + trafficx) / 100000));
     res.set('Content-Type', Prometheus.register.contentType)
     res.end(Prometheus.register.metrics())
   })

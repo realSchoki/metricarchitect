@@ -10,25 +10,21 @@ graphModel FloorModel {
 	attr EString as name
 	
 	@style(sensorInFloorModel, "${name}")
-	node Sensor {
+	node SensorDeviceInstance {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
-     	prime SensorModel::Sensor as sensor
+     	prime SensorModel::SensorDevice as sensor
 		outgoingEdges (Filter)
-		attr EString as name
-		attr EString as url
+		attr EString as name := "DeviceName"
+		attr EString as url := "localhost:8080"
 	}	
 	
-	@style(function, "${label}")
-	node Function {
+	@style(deviceGroup, "${name}")
+	node DeviceGroup {
 		incomingEdges (Filter)
-		attr EString as function
-		attr EString as offset
-		@possibleValuesProvider("dev.schoki.metricarchitect.provider.ValueProvider")
-		attr EString as filter
-		attr EString as timespan
-		attr EString as timeresolution
 		attr EString as name := "Description..."
+		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupIconValueProvider")
+		attr EString as icon
 	}
 	
 	@style(simpleArrow)
@@ -37,7 +33,7 @@ graphModel FloorModel {
 	
 	@style(floorImage)
 	container FloorImage {
-		containableElements ( Function , Sensor )
+		containableElements ( DeviceGroup , SensorDeviceInstance )
 		attr EString as image
 	}
 }
