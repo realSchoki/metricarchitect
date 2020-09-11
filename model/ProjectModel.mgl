@@ -10,7 +10,7 @@ graphModel ProjectModel {
 	
 	attr EString as deploymentPrefix
 	
-	@style(circle)
+	@style(grafanaModel, "${grafanaModels.name}")
 	node GrafanaModel {
 		@pvLabel (name)
      	@pvFileExtension ("grafana")

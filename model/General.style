@@ -3,27 +3,8 @@ appearance default {
 	background (229,229,229)
 }
 
-nodeStyle labeledCircle (1){
-	ellipse {
-		appearance default
-		size(40,40)
-		text {
-			position ( CENTER, MIDDLE )
-			value "%s"
-		}
-	}
-}
-
-nodeStyle circle{
-	ellipse {
-		appearance default
-		size(40,40)
-	}
-}
-
 edgeStyle simpleArrow {	
 	appearance default
-	
 	decorator {
 		location (1.0) // at the end of the edge
 		ARROW
@@ -33,7 +14,7 @@ edgeStyle simpleArrow {
 
 nodeStyle sensorMetric (1) {
 	rectangle {
-		size ( 50 , 100 )
+		size ( 100 , 50 )
 		image { 
 			position ( CENTER 2, TOP 2) 
 			size ( fix 40, fix 40 ) 
@@ -81,10 +62,7 @@ nodeStyle  sensorInFloorModel (1) {
 nodeStyle graphQuery (1) {
 	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryAppearanceProvider")
 	rectangle {
-		appearance {
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 60, 60)
 		image { 
 			position ( CENTER , TOP ) 
 			size ( fix 40, fix 40 ) 
@@ -100,10 +78,7 @@ nodeStyle graphQuery (1) {
 nodeStyle panel (1) {
 	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
 	rectangle {
-		appearance {
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 60, 60)
 		image { 
 			position ( CENTER , TOP ) 
 			size ( fix 40, fix 40 ) 
@@ -119,10 +94,24 @@ nodeStyle panel (1) {
 nodeStyle dashboard (1) {
 	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
 	rectangle {
-		appearance {
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 60, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/list-alt-regular.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+
+nodeStyle grafanaModel (1) {
+	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
+	rectangle {
+		size ( 60, 60)
 		image { 
 			position ( CENTER , TOP ) 
 			size ( fix 40, fix 40 ) 
@@ -138,10 +127,7 @@ nodeStyle dashboard (1) {
 nodeStyle deviceGroup (1) {
 	appearanceProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupAppearanceProvider")
 	rectangle {
-		appearance {
-			transparency 1
-		} 
-		size ( 40, 60)
+		size ( 60, 60)
 		image { 
 			position ( CENTER , TOP ) 
 			size ( fix 40, fix 40 ) 
@@ -193,7 +179,7 @@ nodeStyle floorImage {
 		size (100, 100)
 		image {
 			size ( 100, 100 )
-			path ("src/main/resources/icons/bolt-solid.png")
+			path ("src/main/resources/icons/dummy2.png")
 		}
 	}
 }
