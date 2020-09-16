@@ -10,6 +10,7 @@ graphModel GrafanaModel {
 	attr EString as name
 	
 	@style(graphQuery, "${name}")
+	@icon('src/main/resources/icons/chart-line-solid.png')
 	node GraphQuery {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
@@ -19,6 +20,7 @@ graphModel GrafanaModel {
 	}
 	
 	@style(panel, "${name}")
+	@icon('src/main/resources/icons/chalkboard-solid.png')
 	node Panel {
 		incomingEdges (GraphQueryPanel)
 		outgoingEdges (PanelDashboard)
@@ -26,6 +28,7 @@ graphModel GrafanaModel {
 	}
 	
 	@style(dashboard, "${name}")
+	@icon('src/main/resources/icons/list-alt-regular.png')
 	node Dashboard {
 		incomingEdges (PanelDashboard)
 		attr EString as name := ""

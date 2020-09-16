@@ -11,6 +11,7 @@ graphModel ProjectModel {
 	attr EString as deploymentPrefix
 	
 	@style(grafanaModel, "${grafanaModels.name}")
+	@icon('src/main/resources/icons/list-alt-regular.png')
 	node GrafanaModel {
 		@pvLabel (name)
      	@pvFileExtension ("grafana")

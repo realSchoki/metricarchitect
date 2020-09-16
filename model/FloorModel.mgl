@@ -10,6 +10,7 @@ graphModel FloorModel {
 	attr EString as name
 	
 	@style(sensorInFloorModel, "${name}")
+	@icon('src/main/resources/icons/bolt-solid.png')
 	node SensorDeviceInstance {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
@@ -20,6 +21,7 @@ graphModel FloorModel {
 	}	
 	
 	@style(deviceGroup, "${name}")
+	@icon('src/main/resources/icons/calculator-solid.png')
 	node DeviceGroup {
 		incomingEdges (Filter)
 		attr EString as name := "Description..."
