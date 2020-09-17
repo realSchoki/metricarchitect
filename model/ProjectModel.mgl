@@ -9,9 +9,10 @@ graphModel ProjectModel {
 	diagramExtension "project"
 	
 	attr EString as deploymentPrefix
+	attr EString as companyName
 	
 	@style(grafanaModel, "${grafanaModels.name}")
-	@icon('src/main/resources/icons/list-alt-regular.png')
+	@icon('src/main/resources/icons/list-alt-regular.16.png')
 	node GrafanaModel {
 		@pvLabel (name)
      	@pvFileExtension ("grafana")

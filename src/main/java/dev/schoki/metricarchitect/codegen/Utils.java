@@ -54,7 +54,7 @@ public class Utils {
 		if(g.getOffset() != null && !g.getOffset().isEmpty()) {
 			expr = String.format("%s offset %s", expr, g.getOffset());
 		}
-		if(g.getFunction() != null && !g.getFunction().isEmpty()) {
+		if(g.getFunction() != null && !g.getFunction().getName().equals("none")) {
 			expr = String.format("%s(%s)", g.getFunction(), expr);
 		}
 		return expr;

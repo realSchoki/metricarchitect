@@ -4,6 +4,7 @@ import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.Panel
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryPanel
 import org.eclipse.emf.common.util.EList
+import dev.schoki.metricarchitect.model.project.projectmodel.ProjectModel
 
 class GrafanaConfigGeneratorTemplate {
 	static var i = 0;
@@ -69,13 +70,13 @@ class GrafanaConfigGeneratorTemplate {
 		return template;
 	}
 	
-	def static String getDashboards(){
+	def static String getDashboards(ProjectModel project){
 		var template = '''
 		apiVersion: 1
 		
 		providers:
 		  # <string> an unique provider name. Required
-		  - name: 'example'
+		  - name: '«project.companyName»'
 		    # <int> Org id. Default to 1
 		    orgId: 1
 		    # <string> name of the dashboard folder.

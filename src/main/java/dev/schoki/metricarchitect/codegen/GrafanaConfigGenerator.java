@@ -8,16 +8,17 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import dev.schoki.metricarchitect.codegen.GrafanaConfigGeneratorTemplate;
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard;
+import dev.schoki.metricarchitect.model.project.projectmodel.ProjectModel;
 
 public class GrafanaConfigGenerator{
-		public void generate(List<Dashboard> dashboards, IPath targetDir, IProgressMonitor monitor){
+		public void generate(final ProjectModel model, List<Dashboard> dashboards, IPath targetDir, IProgressMonitor monitor){
 
 			
 			File datasource = targetDir.append("grafana_prometheus_connection.yml").toFile();
 			Utils.writeFile(datasource, GrafanaConfigGeneratorTemplate.getDatasource());
 
 			File dashboard_config = targetDir.append("dashboards_config.yml").toFile();
-			Utils.writeFile(dashboard_config, GrafanaConfigGeneratorTemplate.getDashboards());
+			Utils.writeFile(dashboard_config, GrafanaConfigGeneratorTemplate.getDashboards(model));
 
 
 			targetDir.append("/dashboards/").toFile().mkdir();

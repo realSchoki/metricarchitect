@@ -51,7 +51,7 @@ public class ProjectGenerator implements IGenerator<ProjectModel> {
 		
 		
 		GrafanaConfigGenerator gGrafana = new GrafanaConfigGenerator();
-		gGrafana.generate(model.getGrafanaModels().stream()
+		gGrafana.generate(model, model.getGrafanaModels().stream()
 				.flatMap( f -> f.getGrafanaModels().getDashboards().stream())
 				.collect(Collectors.toList()), targetDir, monitor);
 		 

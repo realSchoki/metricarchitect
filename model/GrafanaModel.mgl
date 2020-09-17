@@ -9,8 +9,24 @@ graphModel GrafanaModel {
 	
 	attr EString as name
 	
+	enum Aggregation {
+		none
+		sum
+		min
+		max
+		avg
+		group
+		stddev
+		stdvar
+		count
+		count_values
+		bottomk
+		topk
+		quantile
+	}
+	
 	@style(graphQuery, "${name}")
-	@icon('src/main/resources/icons/chart-line-solid.png')
+	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQuery {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
@@ -20,7 +36,7 @@ graphModel GrafanaModel {
 	}
 	
 	@style(panel, "${name}")
-	@icon('src/main/resources/icons/chalkboard-solid.png')
+	@icon('src/main/resources/icons/chalkboard-solid.16.png')
 	node Panel {
 		incomingEdges (GraphQueryPanel)
 		outgoingEdges (PanelDashboard)
@@ -28,20 +44,23 @@ graphModel GrafanaModel {
 	}
 	
 	@style(dashboard, "${name}")
-	@icon('src/main/resources/icons/list-alt-regular.png')
+	@icon('src/main/resources/icons/list-alt-regular.16.png')
+	@postCreate('dev.schoki.metricarchitect.hooks.grafanamodel.DashboardPostCreateSetUniqueId')
 	node Dashboard {
 		incomingEdges (PanelDashboard)
 		attr EString as name := ""
+		final unique attr EString as internal_id := " " 
 	}
 	
 	@style(simpleArrow)
 	edge GraphQueryPanel {
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FilterValueProvider")
 		attr EString as filter
-		attr EString as function
+		attr Aggregation as function := "none"
 		attr EString as offset
 		attr EString as timespan
 		attr EString as timeresolution
+		attr EString as label
 	}
 	
 	@style(simpleArrow)
