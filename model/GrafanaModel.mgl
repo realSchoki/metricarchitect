@@ -25,7 +25,7 @@ graphModel GrafanaModel {
 		quantile
 	}
 	
-	@style(graphQuery, "${name}")
+	@style(graphQueryForGroup, "${name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQueryForGroup {
 		@pvLabel (name)
@@ -36,7 +36,7 @@ graphModel GrafanaModel {
 	}
 	
 	
-	@style(graphQuery, "${name}")
+	@style(graphQueryForDevice, "${name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQueryForDevice {
 		@pvLabel (name)

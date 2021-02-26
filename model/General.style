@@ -59,8 +59,24 @@ nodeStyle  sensorInFloorModel (1) {
 	}
 }
 
-nodeStyle graphQuery (1) {
-	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryAppearanceProvider")
+nodeStyle graphQueryForGroup (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryForGroupAppearanceProvider")
+	rectangle {
+		size ( 60, 60)
+		image { 
+			position ( CENTER , TOP ) 
+			size ( fix 40, fix 40 ) 
+			path ( "src/main/resources/icons/chart-line-solid.png" )
+		}
+		text {
+			position ( CENTER , BOTTOM )
+			value "%s" 
+		}
+	}
+}
+
+nodeStyle graphQueryForDevice (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryForDeviceAppearanceProvider")
 	rectangle {
 		size ( 60, 60)
 		image { 

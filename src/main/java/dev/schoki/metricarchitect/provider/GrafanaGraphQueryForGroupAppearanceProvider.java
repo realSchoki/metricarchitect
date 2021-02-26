@@ -5,7 +5,7 @@ import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForGroup;
 import style.Appearance;
 import style.StyleFactory;
 
-public class GrafanaGraphQueryAppearanceProvider implements StyleAppearanceProvider<GraphQueryForGroup> {
+public class GrafanaGraphQueryForGroupAppearanceProvider implements StyleAppearanceProvider<GraphQueryForGroup> {
 
 	@Override
 	public Appearance getAppearance(GraphQueryForGroup graphQuery, String element) {
