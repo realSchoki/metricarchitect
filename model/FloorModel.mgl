@@ -11,11 +11,11 @@ graphModel FloorModel {
 	
 	@style(sensorInFloorModel, "${name}")
 	@icon('src/main/resources/icons/bolt-solid.16.png')
-	node SensorDeviceInstance {
+	node Device {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
-     	prime SensorModel::SensorDevice as sensor
-		outgoingEdges (Filter)
+     	prime SensorModel::DeviceDefinition as sensor
+		outgoingEdges (GroupBy)
 		attr EString as name := "DeviceName"
 		attr EString as url := "localhost:8080"
 	}	
@@ -23,19 +23,19 @@ graphModel FloorModel {
 	@style(deviceGroup, "${name}")
 	@icon('src/main/resources/icons/calculator-solid.16.png')
 	node DeviceGroup {
-		incomingEdges (Filter)
+		incomingEdges (GroupBy)
 		attr EString as name := "Description..."
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupIconValueProvider")
 		attr EString as icon
 	}
 	
 	@style(simpleArrow)
-	edge Filter {
+	edge GroupBy {
 	}
 	
 	@style(floorImage)
 	container FloorImage {
-		containableElements ( DeviceGroup , SensorDeviceInstance )
+		containableElements ( DeviceGroup , Device )
 		attr EString as image
 	}
 }

@@ -27,19 +27,30 @@ graphModel GrafanaModel {
 	
 	@style(graphQuery, "${name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
-	node GraphQuery {
+	node GraphQueryForGroup {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
      	prime FloorModel::DeviceGroup as deviceGroup
-		outgoingEdges (GraphQueryPanel)
+		outgoingEdges (GraphQueryToPanel)
+		attr EString as name := ""
+	}
+	
+	
+	@style(graphQuery, "${name}")
+	@icon('src/main/resources/icons/chart-line-solid.16.png')
+	node GraphQueryForDevice {
+		@pvLabel (name)
+     	@pvFileExtension ("floor")
+     	prime FloorModel::Device as device
+		outgoingEdges (GraphQueryToPanel)
 		attr EString as name := ""
 	}
 	
 	@style(panel, "${name}")
 	@icon('src/main/resources/icons/chalkboard-solid.16.png')
 	node Panel {
-		incomingEdges (GraphQueryPanel)
-		outgoingEdges (PanelDashboard)
+		incomingEdges (GraphQueryToPanel)
+		outgoingEdges (PanelToDashboard)
 		attr EString as name := ""
 	}
 	
@@ -47,13 +58,13 @@ graphModel GrafanaModel {
 	@icon('src/main/resources/icons/list-alt-regular.16.png')
 	@postCreate('dev.schoki.metricarchitect.hooks.grafanamodel.DashboardPostCreateSetUniqueId')
 	node Dashboard {
-		incomingEdges (PanelDashboard)
+		incomingEdges (PanelToDashboard)
 		attr EString as name := ""
 		final unique attr EString as internal_id := " " 
 	}
 	
 	@style(simpleArrow)
-	edge GraphQueryPanel {
+	edge GraphQueryToPanel {
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FilterValueProvider")
 		attr EString as filter
 		attr Aggregation as function := "none"
@@ -64,7 +75,7 @@ graphModel GrafanaModel {
 	}
 	
 	@style(simpleArrow)
-	edge PanelDashboard {
+	edge PanelToDashboard {
 	}
 }
 

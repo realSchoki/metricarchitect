@@ -2,9 +2,9 @@ package dev.schoki.metricarchitect.codegen
 
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.Dashboard
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.Panel
-import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryPanel
 import org.eclipse.emf.common.util.EList
 import dev.schoki.metricarchitect.model.project.projectmodel.ProjectModel
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryToPanel
 
 class GrafanaConfigGeneratorTemplate {
 	static var i = 0;
@@ -196,7 +196,7 @@ class GrafanaConfigGeneratorTemplate {
 				        "stack": false,
 				        "steppedLine": false,
 				        "targets": [
-				        «getTargets(p.incomingGraphQueryPanels)»
+				        «getTargets(p.incomingGraphQueryToPanels)»
 				        ],
 				        "thresholds": [],
 				        "timeFrom": null,
@@ -242,7 +242,7 @@ class GrafanaConfigGeneratorTemplate {
 		'''
 	}
 	
-	def static getTargets(EList<GraphQueryPanel> gqp) {
+	def static getTargets(EList<GraphQueryToPanel> gqp) {
 		var x = 0;
 		var char c = 'A'
 		var res = ""

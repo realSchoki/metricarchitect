@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -32,10 +33,15 @@ public class ProjectGenerator implements IGenerator<ProjectModel> {
 		}
 		
 		PrometheusConfigGenerator gPrometheus = new PrometheusConfigGenerator();
-		gPrometheus.generate(model.getGrafanaModels().stream()
-				.flatMap( m -> m.getGrafanaModels().getGraphQuerys().stream())
-				.flatMap( g -> g.getDeviceGroup().getSensorDeviceInstancePredecessors().stream())
-				.collect(Collectors.toList()), targetDir, monitor);
+		gPrometheus.generate( 
+			Stream.concat(
+					model.getGrafanaModels().stream()
+					.flatMap( m -> m.getGrafanaModels().getGraphQueryForGroups().stream())
+					.flatMap( g -> g.getDeviceGroup().getDevicePredecessors().stream()),
+					model.getGrafanaModels().stream()
+					.flatMap( m -> m.getGrafanaModels().getGraphQueryForDevices().stream())
+					.map( g -> g.getDevice())
+		).collect(Collectors.toList()), targetDir, monitor);
 		
 		DockerComposeGenerator gDocker = new DockerComposeGenerator();
 		

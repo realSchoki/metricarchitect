@@ -3,20 +3,20 @@ package dev.schoki.metricarchitect.provider;
 import de.jabc.cinco.meta.core.ge.style.generator.runtime.appearance.StyleAppearanceProvider;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Bolt;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Broadcast;
+import dev.schoki.metricarchitect.model.sensor.sensormodel.DeviceDefinition;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Fan;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Faucet;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Light;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Plug;
-import dev.schoki.metricarchitect.model.sensor.sensormodel.SensorDevice;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Wind;
 import dev.schoki.metricarchitect.provider.SensorIconValueProvider.Icon;
 import style.Appearance;
 import style.StyleFactory;
 
-public class SensorImageAppearanceProvider implements StyleAppearanceProvider<SensorDevice> {
+public class SensorImageAppearanceProvider implements StyleAppearanceProvider<DeviceDefinition> {
 
 	@Override
-	public Appearance getAppearance(SensorDevice sensor, String element) {
+	public Appearance getAppearance(DeviceDefinition sensor, String element) {
 		Appearance appearance = StyleFactory.eINSTANCE.createAppearance();
 		appearance.setLineWidth(2);
 		

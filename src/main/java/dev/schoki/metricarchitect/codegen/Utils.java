@@ -11,10 +11,13 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
-import dev.schoki.metricarchitect.model.floor.floormodel.SensorDeviceInstance;
-import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryPanel;
+import dev.schoki.metricarchitect.model.floor.floormodel.Device;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForDevice;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForGroup;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryToPanel;
 
 public class Utils {
 	public static void writeFile(File f, CharSequence code) {
@@ -40,8 +43,15 @@ public class Utils {
 	    return generatedString;
 	}
 	
-	public static String graphToString(GraphQueryPanel g) {
-		EList<SensorDeviceInstance> f = g.getSourceElement().getDeviceGroup().getSensorDeviceInstancePredecessors();
+	public static String graphToString(GraphQueryToPanel g) {
+		EList<Device> f = ECollections.emptyEList();
+		if(g.getSourceElement() instanceof GraphQueryForGroup) {
+			f = ((GraphQueryForGroup) g.getSourceElement()).getDeviceGroup().getDevicePredecessors();
+		} else if ( g.getSourceElement() instanceof GraphQueryForDevice) {
+			f = ECollections.asEList(((GraphQueryForDevice) g.getSourceElement()).getDevice());
+		} else {
+			throw new RuntimeException("Unknown node type: " + g.getSourceElement().getClass().toString());
+		}
 		String jobs = String.join("|",   f.stream().map(s -> s.getName()).collect(Collectors.toList()));
 		String expr = String.format("%s{job=~\\\"%s\\\"}", g.getFilter(), jobs, g.getTimespan(), g.getTimeresolution());
 		if(g.getTimespan() != null && !g.getTimespan().isEmpty()) {

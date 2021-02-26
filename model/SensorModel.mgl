@@ -5,8 +5,8 @@ graphModel SensorModel {
 	diagramExtension "sensor"
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
-	node SensorDevice {
+	@palette("DeviceDefinition")
+	node DeviceDefinition {
 		incomingEdges (ContainedBy)
 		attr EString as name := ""
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.SensorIconValueProvider")
@@ -14,51 +14,51 @@ graphModel SensorModel {
 	}	
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/bolt-solid.16.png")
-	node Bolt extends SensorDevice {
+	node Bolt extends DeviceDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/broadcast-tower-solid.16.png")
-	node Broadcast extends SensorDevice {
+	node Broadcast extends DeviceDefinition {
 	}
 	 
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/fan-solid.16.png")
-	node Fan extends SensorDevice {
+	node Fan extends DeviceDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/faucet-solid.16.png")
-	node Faucet extends SensorDevice {
+	node Faucet extends DeviceDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/lightbulb-solid.16.png")
-	node Light extends SensorDevice {
+	node Light extends DeviceDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/plug-solid.16.png")
-	node Plug extends SensorDevice {
+	node Plug extends DeviceDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("SensorDevices")
+	@palette("DeviceDefinition")
 	@icon("src/main/resources/icons/wind-solid.16.png")
-	node Wind extends SensorDevice {
+	node Wind extends DeviceDefinition {
 	}
 
 	
 	@style(sensorMetric, "${label}")
 	@icon("src/main/resources/icons/file-export-solid.16.png")
-	node SensorMetric {
+	node Metric {
 		outgoingEdges (ContainedBy)
 		attr EString as label := ""
 	}

@@ -1,14 +1,14 @@
 package dev.schoki.metricarchitect.provider;
 
 import de.jabc.cinco.meta.core.ge.style.generator.runtime.appearance.StyleAppearanceProvider;
-import dev.schoki.metricarchitect.model.floor.floormodel.SensorDeviceInstance;
+import dev.schoki.metricarchitect.model.floor.floormodel.Device;
 import style.Appearance;
 import style.StyleFactory;
 
-public class FloorImageAppearanceProvider implements StyleAppearanceProvider<SensorDeviceInstance> {
+public class FloorImageAppearanceProvider implements StyleAppearanceProvider<Device> {
 
 	@Override
-	public Appearance getAppearance(SensorDeviceInstance sensor, String element) {
+	public Appearance getAppearance(Device sensor, String element) {
 		Appearance appearance = StyleFactory.eINSTANCE.createAppearance();
 		appearance.setImagePath(sensor.getSensor().getIcon());
 		return appearance;
