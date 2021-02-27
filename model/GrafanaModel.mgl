@@ -25,25 +25,23 @@ graphModel GrafanaModel {
 		quantile
 	}
 	
-	@style(graphQueryForGroup, "${name}")
+	@style(graphQueryForGroup, "${deviceGroup.name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQueryForGroup {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
      	prime FloorModel::DeviceGroup as deviceGroup
 		outgoingEdges (GraphQueryToPanel)
-		attr EString as name := ""
 	}
 	
 	
-	@style(graphQueryForDevice, "${name}")
+	@style(graphQueryForDevice, "${device.name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQueryForDevice {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
      	prime FloorModel::Device as device
 		outgoingEdges (GraphQueryToPanel)
-		attr EString as name := ""
 	}
 	
 	@style(panel, "${name}")
