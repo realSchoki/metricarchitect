@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import de.jabc.cinco.meta.runtime.provider.CincoValuesProvider;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Bolt;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Broadcast;
-import dev.schoki.metricarchitect.model.sensor.sensormodel.DeviceDefinition;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Fan;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Faucet;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Light;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Plug;
+import dev.schoki.metricarchitect.model.sensor.sensormodel.SensorDefinition;
 import dev.schoki.metricarchitect.model.sensor.sensormodel.Wind;
 
-public class SensorIconValueProvider extends CincoValuesProvider<DeviceDefinition, String> {
+public class SensorIconValueProvider extends CincoValuesProvider<SensorDefinition, String> {
 	
 	public static enum Icon {
 		Bolt("src/main/resources/icons/bolt-solid.png"),
@@ -44,7 +44,7 @@ public class SensorIconValueProvider extends CincoValuesProvider<DeviceDefinitio
 	}
 
 	@Override
-	public Map<String, String> getPossibleValues(DeviceDefinition sensor) {
+	public Map<String, String> getPossibleValues(SensorDefinition sensor) {
 		
 		if (sensor instanceof Plug) {
 			return Arrays.asList(Icon.Plug).stream().collect(Collectors.toMap(Icon::getPath, Icon::name));

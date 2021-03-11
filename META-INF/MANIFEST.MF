@@ -27,7 +27,18 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.e
  runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.
  plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de
  .jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.gen
- erator.runtime
+ erator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinc
+ o.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator.run
+ time,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plu
+ gin.generator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.ja
+ bc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.genera
+ tor.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.m
+ eta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator.runtim
+ e,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin
+ .generator.runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.
+ cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta.plugin.generator
+ .runtime,de.jabc.cinco.meta.plugin.generator.runtime,de.jabc.cinco.meta
+ .plugin.generator.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 
-import dev.schoki.metricarchitect.model.floor.floormodel.Device;
-import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForDevice;
+import dev.schoki.metricarchitect.model.floor.floormodel.Sensor;
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForGroup;
+import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryForSensor;
 import dev.schoki.metricarchitect.model.grafana.grafanamodel.GraphQueryToPanel;
 
 public class Utils {
@@ -44,11 +44,11 @@ public class Utils {
 	}
 	
 	public static String graphToString(GraphQueryToPanel g) {
-		EList<Device> f = ECollections.emptyEList();
+		EList<Sensor> f = ECollections.emptyEList();
 		if(g.getSourceElement() instanceof GraphQueryForGroup) {
-			f = ((GraphQueryForGroup) g.getSourceElement()).getDeviceGroup().getDevicePredecessors();
-		} else if ( g.getSourceElement() instanceof GraphQueryForDevice) {
-			f = ECollections.asEList(((GraphQueryForDevice) g.getSourceElement()).getDevice());
+			f = ((GraphQueryForGroup) g.getSourceElement()).getSensorGroup().getSensorPredecessors();
+		} else if ( g.getSourceElement() instanceof GraphQueryForSensor) {
+			f = ECollections.asEList(((GraphQueryForSensor) g.getSourceElement()).getSensor());
 		} else {
 			throw new RuntimeException("Unknown node type: " + g.getSourceElement().getClass().toString());
 		}

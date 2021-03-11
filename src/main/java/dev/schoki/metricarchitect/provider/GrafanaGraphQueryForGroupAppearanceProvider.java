@@ -10,7 +10,7 @@ public class GrafanaGraphQueryForGroupAppearanceProvider implements StyleAppeara
 	@Override
 	public Appearance getAppearance(GraphQueryForGroup graphQuery, String element) {
 		Appearance appearance = StyleFactory.eINSTANCE.createAppearance();
-		appearance.setImagePath(graphQuery.getDeviceGroup().getIcon());
+		appearance.setImagePath(graphQuery.getSensorGroup().getIcon());
 		return appearance;
 	}
 }

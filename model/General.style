@@ -15,14 +15,18 @@ edgeStyle simpleArrow {
 nodeStyle sensorMetric (1) {
 	rectangle {
 		size ( 100 , 50 )
-		image { 
-			position ( CENTER 2, TOP 2) 
-			size ( fix 40, fix 40 ) 
-			path ( "src/main/resources/icons/file-export-solid.png" )
-		}
-		text {
-			position ( CENTER , BOTTOM )
-			value "%s" 
+		rectangle {
+			position ( 5, 5)
+			size ( 90, 40 )
+			image { 
+				position ( CENTER 2, TOP 2) 
+				size ( fix 30, fix 30 ) 
+				path ( "src/main/resources/icons/file-export-solid.png" )
+			}
+			text {
+				position ( CENTER , BOTTOM )
+				value "%s" 
+			}
 		}
 	}
 }
@@ -75,8 +79,8 @@ nodeStyle graphQueryForGroup (1) {
 	}
 }
 
-nodeStyle graphQueryForDevice (1) {
-	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryForDeviceAppearanceProvider")
+nodeStyle graphQueryForSensor (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.GrafanaGraphQueryForSensorAppearanceProvider")
 	rectangle {
 		size ( 60, 60)
 		image { 
@@ -95,14 +99,18 @@ nodeStyle panel (1) {
 	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
 	rectangle {
 		size ( 60, 60)
-		image { 
-			position ( CENTER , TOP ) 
-			size ( fix 40, fix 40 ) 
-			path ( "src/main/resources/icons/chalkboard-solid.png" )
-		}
-		text {
-			position ( CENTER , BOTTOM )
-			value "%s" 
+		rectangle {
+			position ( 5, 5)
+			size ( 50, 50)
+			image { 
+				position ( CENTER , TOP ) 
+				size ( fix 30, fix 30 ) 
+				path ( "src/main/resources/icons/chalkboard-solid.png" )
+			}
+			text {
+				position ( CENTER , BOTTOM )
+				value "%s" 
+			}
 		}
 	}
 }
@@ -111,14 +119,18 @@ nodeStyle dashboard (1) {
 	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
 	rectangle {
 		size ( 60, 60)
-		image { 
-			position ( CENTER , TOP ) 
-			size ( fix 40, fix 40 ) 
-			path ( "src/main/resources/icons/list-alt-regular.png" )
-		}
-		text {
-			position ( CENTER , BOTTOM )
-			value "%s" 
+		rectangle {
+			position ( 5, 5)
+			size ( 50, 50)
+			image { 
+				position ( CENTER , TOP ) 
+				size ( fix 30, fix 30 ) 
+				path ( "src/main/resources/icons/list-alt-regular.png" )
+			}
+			text {
+				position ( CENTER , BOTTOM )
+				value "%s" 
+			}
 		}
 	}
 }
@@ -128,29 +140,33 @@ nodeStyle grafanaModel (1) {
 	//appearanceProvider("dev.schoki.metricarchitect.provider.ImageAppearanceProvider")
 	rectangle {
 		size ( 60, 60)
-		image { 
-			position ( CENTER , TOP ) 
-			size ( fix 40, fix 40 ) 
+		rectangle {
+			position ( 5, 5)
+			size ( 50, 50)
+			image { 
+				position ( CENTER , TOP ) 
+				size ( fix 30, fix 30 ) 
 			path ( "src/main/resources/icons/list-alt-regular.png" )
-		}
-		text {
-			position ( CENTER , BOTTOM )
-			value "%s" 
+			}
+			text {
+				position ( CENTER , BOTTOM )
+				value "%s" 
+			}
 		}
 	}
 }
 
-nodeStyle deviceGroup (1) {
-	appearanceProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupAppearanceProvider")
-	rectangle {
-		size ( 60, 60)
+nodeStyle sensorGroup (1) {
+	appearanceProvider("dev.schoki.metricarchitect.provider.FloorSensorGroupAppearanceProvider")
+	ellipse {
+		size ( 80, 80)
 		image { 
-			position ( CENTER , TOP ) 
+			position ( CENTER , MIDDLE ) 
 			size ( fix 40, fix 40 ) 
 			path ( "src/main/resources/icons/calculator-solid.png" )
 		}
 		text {
-			position ( CENTER , BOTTOM )
+			position ( 40 , 60 )
 			value "%s" 
 		}
 	}

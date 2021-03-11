@@ -11,21 +11,21 @@ graphModel FloorModel {
 	
 	@style(sensorInFloorModel, "${name}")
 	@icon('src/main/resources/icons/bolt-solid.16.png')
-	node Device {
+	node Sensor {
 		@pvLabel (name)
      	@pvFileExtension ("sensor")
-     	prime SensorModel::DeviceDefinition as sensor
+     	prime SensorModel::SensorDefinition as sensor
 		outgoingEdges (GroupBy)
-		attr EString as name := "DeviceName"
+		attr EString as name := "SensorName"
 		attr EString as url := "localhost:8080"
 	}	
 	
-	@style(deviceGroup, "${name}")
+	@style(sensorGroup, "${name}")
 	@icon('src/main/resources/icons/calculator-solid.16.png')
-	node DeviceGroup {
+	node SensorGroup {
 		incomingEdges (GroupBy)
 		attr EString as name := "Description..."
-		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FloorDeviceGroupIconValueProvider")
+		@possibleValuesProvider("dev.schoki.metricarchitect.provider.FloorSensorGroupIconValueProvider")
 		attr EString as icon
 	}
 	
@@ -35,7 +35,7 @@ graphModel FloorModel {
 	
 	@style(floorImage)
 	container FloorImage {
-		containableElements ( DeviceGroup , Device )
+		containableElements ( SensorGroup , Sensor )
 		attr EString as image
 	}
 }

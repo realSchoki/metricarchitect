@@ -5,8 +5,8 @@ graphModel SensorModel {
 	diagramExtension "sensor"
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
-	node DeviceDefinition {
+	@palette("SensorDefinition")
+	node SensorDefinition {
 		incomingEdges (ContainedBy)
 		attr EString as name := ""
 		@possibleValuesProvider("dev.schoki.metricarchitect.provider.SensorIconValueProvider")
@@ -14,45 +14,45 @@ graphModel SensorModel {
 	}	
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/bolt-solid.16.png")
-	node Bolt extends DeviceDefinition {
+	node Bolt extends SensorDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/broadcast-tower-solid.16.png")
-	node Broadcast extends DeviceDefinition {
+	node Broadcast extends SensorDefinition {
 	}
 	 
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/fan-solid.16.png")
-	node Fan extends DeviceDefinition {
+	node Fan extends SensorDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/faucet-solid.16.png")
-	node Faucet extends DeviceDefinition {
+	node Faucet extends SensorDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/lightbulb-solid.16.png")
-	node Light extends DeviceDefinition {
+	node Light extends SensorDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/plug-solid.16.png")
-	node Plug extends DeviceDefinition {
+	node Plug extends SensorDefinition {
 	}
 	
 	@style(sensorDevice, "${name}")
-	@palette("DeviceDefinition")
+	@palette("SensorDefinition")
 	@icon("src/main/resources/icons/wind-solid.16.png")
-	node Wind extends DeviceDefinition {
+	node Wind extends SensorDefinition {
 	}
 
 	

@@ -37,16 +37,16 @@ public class ProjectGenerator implements IGenerator<ProjectModel> {
 			Stream.concat(
 					model.getGrafanaModels().stream()
 					.flatMap( m -> m.getGrafanaModels().getGraphQueryForGroups().stream())
-					.flatMap( g -> g.getDeviceGroup().getDevicePredecessors().stream()),
+					.flatMap( g -> g.getSensorGroup().getSensorPredecessors().stream()),
 					model.getGrafanaModels().stream()
-					.flatMap( m -> m.getGrafanaModels().getGraphQueryForDevices().stream())
-					.map( g -> g.getDevice())
+					.flatMap( m -> m.getGrafanaModels().getGraphQueryForSensors().stream())
+					.map( g -> g.getSensor())
 		).collect(Collectors.toList()), targetDir, monitor);
 		
 		DockerComposeGenerator gDocker = new DockerComposeGenerator();
 		
 		try {
-			gDocker.generate(true, targetDir, monitor);
+			gDocker.generate(targetDir, monitor);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

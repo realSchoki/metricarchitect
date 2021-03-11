@@ -3,10 +3,10 @@ package dev.schoki.metricarchitect.codegen
 import java.util.List
 import dev.schoki.metricarchitect.codegen.Utils
 import java.util.stream.Collectors
-import dev.schoki.metricarchitect.model.floor.floormodel.Device
+import dev.schoki.metricarchitect.model.floor.floormodel.Sensor
 
 class PrometheusConfigGeneratorTemplate {
-	def static String generate(List<Device> devices, Boolean generateSampleSensors) {
+	def static String generate(List<Sensor> devices) {
 		var String template = '''
 			# my global config
 			global:
@@ -37,11 +37,6 @@ class PrometheusConfigGeneratorTemplate {
 			
 			    static_configs:
 			    - targets: ['localhost:9090']
-			  «IF generateSampleSensors»
-			  - job_name: 'metricarchitect-sample'
-			    static_configs:
-			    - targets: ['sensor:3001']
-			  «ENDIF»
 			  «FOR s : devices.stream.filter(Utils.distinctByKey([ x | x.name])).collect(Collectors.toList())»
 			  - job_name: '«s.name»'
 			    static_configs:

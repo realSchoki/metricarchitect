@@ -2,7 +2,7 @@ package dev.schoki.metricarchitect.codegen
 
 class DockerComposeGeneratorTemplate {
 	
-	def static String generate(Boolean generateSampleSensors) {
+	def static String generate() {
 		var String template = '''
 		version: '3'
 		services:
@@ -16,7 +16,6 @@ class DockerComposeGeneratorTemplate {
 		      - ./dashboards:/var/lib/grafana/dashboards/general
 		    links:
 		    - prometheus
-		    #command: --config /tmp/grafana.yml
 		    image: "grafana/grafana"
 		  prometheus:
 		    ports:
@@ -25,12 +24,6 @@ class DockerComposeGeneratorTemplate {
 		      - ./prometheus.yml:/etc/prometheus/prometheus.yml
 		      - data-prometheus:/prometheus
 		    image: "prom/prometheus"
-		  «IF generateSampleSensors»
-		  sensor:
-		    ports:
-		    - "127.0.0.1:3001:3001"
-		    build: ./sample-sensor/
-		  «ENDIF»
 		volumes:
 		  data-prometheus:
 		    driver: local

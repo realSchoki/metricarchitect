@@ -25,22 +25,22 @@ graphModel GrafanaModel {
 		quantile
 	}
 	
-	@style(graphQueryForGroup, "${deviceGroup.name}")
+	@style(graphQueryForGroup, "${sensorGroup.name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
 	node GraphQueryForGroup {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
-     	prime FloorModel::DeviceGroup as deviceGroup
+     	prime FloorModel::SensorGroup as sensorGroup
 		outgoingEdges (GraphQueryToPanel)
 	}
 	
 	
-	@style(graphQueryForDevice, "${device.name}")
+	@style(graphQueryForSensor, "${sensor.name}")
 	@icon('src/main/resources/icons/chart-line-solid.16.png')
-	node GraphQueryForDevice {
+	node GraphQueryForSensor {
 		@pvLabel (name)
      	@pvFileExtension ("floor")
-     	prime FloorModel::Device as device
+     	prime FloorModel::Sensor as sensor
 		outgoingEdges (GraphQueryToPanel)
 	}
 	
@@ -69,7 +69,6 @@ graphModel GrafanaModel {
 		attr EString as offset
 		attr EString as timespan
 		attr EString as timeresolution
-		attr EString as label
 	}
 	
 	@style(simpleArrow)
