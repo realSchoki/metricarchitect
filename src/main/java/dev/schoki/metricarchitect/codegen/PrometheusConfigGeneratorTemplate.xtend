@@ -6,7 +6,7 @@ import java.util.stream.Collectors
 import dev.schoki.metricarchitect.model.floor.floormodel.Sensor
 
 class PrometheusConfigGeneratorTemplate {
-	def static String generate(List<Sensor> devices) {
+	def static String generate(List<Sensor> sensors) {
 		var String template = '''
 			# my global config
 			global:
@@ -37,7 +37,7 @@ class PrometheusConfigGeneratorTemplate {
 			
 			    static_configs:
 			    - targets: ['localhost:9090']
-			  «FOR s : devices.stream.filter(Utils.distinctByKey([ x | x.name])).collect(Collectors.toList())»
+			  «FOR s : sensors.stream.filter(Utils.distinctByKey([ x | x.name])).collect(Collectors.toList())»
 			  - job_name: '«s.name»'
 			    static_configs:
 			    - targets: ['«s.url»']
